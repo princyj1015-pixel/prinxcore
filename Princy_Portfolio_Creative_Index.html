@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Princy | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1c1430; --bg2:#271b45; --card:#2f2253; --text:#f7efff; --muted:#c3b4e0;
+  --orchid:#c4a2ff; --peach:#ffb892; --mint:#93e8cf; --line:rgba(255,255,255,.14);
+  --code:#150e26;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#fbf6ff; --bg2:#f1e7ff; --card:#ffffff; --text:#2a1a4a; --muted:#6b5a8e;
+    --orchid:#7b4bd6; --peach:#d4683a; --mint:#127a5e; --line:rgba(42,26,74,.16); --code:#2a1a4a;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#fbf6ff; --bg2:#f1e7ff; --card:#ffffff; --text:#2a1a4a; --muted:#6b5a8e;
+  --orchid:#7b4bd6; --peach:#d4683a; --mint:#127a5e; --line:rgba(42,26,74,.16); --code:#2a1a4a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.05rem/1.7 "DM Sans",system-ui,sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;
+  background:radial-gradient(600px 400px at 85% 5%,rgba(196,162,255,.22),transparent 70%),
+             radial-gradient(500px 380px at 5% 60%,rgba(255,184,146,.14),transparent 70%)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 1.4rem}
+section{padding:4.5rem 0}
+h2{font-size:clamp(1.9rem,5vw,2.8rem);margin-bottom:1.6rem}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 75%,transparent);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:.7rem;padding-bottom:.7rem}
+.logo{font-family:Fraunces,serif;font-weight:700;font-size:1.25rem;text-decoration:none}
+.links{display:flex;gap:1.1rem;font-size:.95rem;overflow-x:auto}
+.links a{text-decoration:none;color:var(--muted);white-space:nowrap}
+.links a:hover{color:var(--text)}
+
+/* hero */
+.hero{padding-top:3.5rem}
+.hero h1{font-size:clamp(2.6rem,9vw,5.4rem);font-weight:700;letter-spacing:-.02em}
+.hero h1 em{font-weight:400;color:var(--orchid)}
+.hero p.lead{max-width:34rem;color:var(--muted);font-size:1.15rem;margin:1.2rem 0 2rem}
+.term{background:var(--code);border:1px solid var(--line);border-radius:16px;max-width:520px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.term .bar{display:flex;gap:.45rem;padding:.7rem .9rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.term .bar i{width:11px;height:11px;border-radius:50%;background:#ff7b8a}
+.term .bar i:nth-child(2){background:#ffd27b}.term .bar i:nth-child(3){background:#7be3b0}
+.term pre{margin:0;padding:1.1rem 1.2rem 1.3rem;font:400 .95rem/1.7 "JetBrains Mono",monospace;color:#f7efff;white-space:pre-wrap;min-height:9.5em}
+.k{color:#c4a2ff}.s{color:#93e8cf}.c{color:#9a8bbd}.o{color:#ffb892}
+.caret{display:inline-block;width:.55ch;height:1.1em;background:var(--mint);vertical-align:-.2em;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* about */
+.about{display:grid;gap:2rem}
+@media(min-width:800px){.about{grid-template-columns:1.4fr 1fr;align-items:start}}
+.about p{margin:0 0 1rem;max-width:36rem}
+.facts{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.6rem}
+.facts h3{font-size:1.35rem;margin-bottom:1rem}
+.facts dl{margin:0}
+.facts dt{color:var(--muted);font-size:.85rem;margin-top:.9rem}
+.facts dd{margin:0;font-weight:500}
+.facts blockquote{margin:1.4rem 0 0;padding-top:1.1rem;border-top:1px dashed var(--line);font-family:Fraunces,serif;font-style:italic;color:var(--peach)}
+
+/* skills */
+.chips{display:flex;flex-wrap:wrap;gap:.7rem}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:.55rem 1.1rem;font-weight:500}
+.chip.on{background:linear-gradient(120deg,var(--orchid),var(--peach));color:#1c1430;border-color:transparent}
+.note{color:var(--muted);margin-top:1rem}
+
+/* goals */
+.goals{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+@media(min-width:700px){.goals{grid-template-columns:repeat(2,1fr)}}
+.goals li{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.2rem 1.3rem;display:flex;gap:1rem;align-items:flex-start}
+.goals li:nth-child(odd){border-radius:20px 20px 20px 6px}
+.goals .em{font-size:1.7rem;line-height:1}
+.goals b{display:block;font-family:Fraunces,serif;font-size:1.15rem;margin-bottom:.15rem}
+.goals span{color:var(--muted);font-size:.97rem}
+.goals li:last-child{grid-column:1/-1;background:linear-gradient(120deg,var(--card),var(--bg2))}
+.vision{margin-top:2.2rem;font-family:Fraunces,serif;font-style:italic;font-size:clamp(1.4rem,4vw,2.1rem);line-height:1.35}
+.vision span{display:block;color:var(--orchid)}.vision span:nth-child(2){color:var(--peach)}.vision span:nth-child(3){color:var(--mint)}
+
+/* quotes */
+.quotes{background:var(--bg2);border-block:1px solid var(--line)}
+.qbox{max-width:760px;margin:0 auto;text-align:center;min-height:11rem;display:flex;flex-direction:column;justify-content:center}
+.qtext{font-family:Fraunces,serif;font-size:clamp(1.5rem,4.5vw,2.4rem);line-height:1.3;transition:opacity .35s}
+.qwho{color:var(--muted);margin-top:1rem;transition:opacity .35s}
+.qbox.fade .qtext,.qbox.fade .qwho{opacity:0}
+.qctl{display:flex;justify-content:center;align-items:center;gap:.6rem;margin-top:1.8rem}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--text);font:500 1rem "DM Sans",sans-serif;padding:.65rem 1.3rem;border-radius:999px;cursor:pointer}
+.btn:hover{border-color:var(--orchid)}
+.dots{display:flex;gap:.4rem;margin:0 .6rem}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:.3s}
+.dots i.on{background:var(--orchid);width:22px;border-radius:6px}
+
+/* contact */
+.contact{text-align:center}
+.contact h2{margin-bottom:.8rem}
+.contact p{color:var(--muted);max-width:30rem;margin:0 auto 1.6rem}
+.card{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.4rem 2.6rem}
+.card b{font-family:Fraunces,serif;font-size:2rem;display:block}
+.card span{color:var(--muted);font-size:.95rem}
+footer{text-align:center;color:var(--muted);padding:2rem 1rem 3rem;font-size:.92rem}
+.theme{background:none;border:1px solid var(--line);color:var(--text);border-radius:999px;width:38px;height:38px;cursor:pointer;font-size:1rem}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* creative index */
+.index-panel{
+  padding:2.2rem 0 1.5rem;
+}
+.index-shell{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,var(--card),color-mix(in srgb,var(--bg2) 82%,var(--card)));
+  border:1px solid var(--line);
+  border-radius:30px;
+  padding:1.5rem;
+  box-shadow:0 25px 70px rgba(0,0,0,.16);
+}
+.index-shell::before,.index-shell::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  filter:blur(2px);
+  pointer-events:none;
+}
+.index-shell::before{
+  width:180px;height:180px;right:-70px;top:-75px;
+  background:rgba(196,162,255,.18);
+}
+.index-shell::after{
+  width:140px;height:140px;left:-65px;bottom:-75px;
+  background:rgba(255,184,146,.12);
+}
+.index-kicker{
+  color:var(--orchid);
+  font:600 .78rem/1 "JetBrains Mono",monospace;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:.55rem;
+}
+.index-title{
+  font-size:clamp(1.8rem,5vw,3rem);
+  margin-bottom:.35rem;
+}
+.index-sub{
+  color:var(--muted);
+  margin:0 0 1.25rem;
+}
+.index-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.75rem;
+  position:relative;
+  z-index:1;
+}
+.index-card{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  min-height:82px;
+  padding:.9rem;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:color-mix(in srgb,var(--card) 82%,transparent);
+  text-decoration:none;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.index-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--orchid);
+  box-shadow:0 12px 30px rgba(0,0,0,.14);
+}
+.index-no{
+  color:var(--orchid);
+  font:600 .75rem "JetBrains Mono",monospace;
+  align-self:flex-start;
+  padding-top:.12rem;
+}
+.index-icon{
+  font-size:1.35rem;
+}
+.index-card strong{
+  display:block;
+  font-family:Fraunces,serif;
+  font-size:1rem;
+}
+.index-card small{
+  display:block;
+  color:var(--muted);
+  font-size:.76rem;
+  line-height:1.35;
+  margin-top:.12rem;
+}
+.index-arrow{
+  margin-left:auto;
+  color:var(--muted);
+  transition:transform .25s ease;
+}
+.index-card:hover .index-arrow{transform:translateX(4px);color:var(--orchid)}
+.index-motto{
+  position:relative;
+  z-index:1;
+  margin:1.25rem 0 .1rem;
+  padding-top:1rem;
+  border-top:1px dashed var(--line);
+  text-align:center;
+  font-family:Fraunces,serif;
+  font-style:italic;
+  color:var(--peach);
+}
+@media(min-width:700px){
+  .index-shell{padding:2rem}
+  .index-grid{grid-template-columns:repeat(4,1fr)}
+  .index-card{min-height:115px;align-items:flex-start;flex-direction:column;gap:.35rem}
+  .index-arrow{align-self:flex-end}
+}
+
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="#top">Princy ✦</a>
+  <div class="links"><a href="#about">About</a><a href="#journey">Journey</a><a href="#skills">Skills</a><a href="#goals">Goals</a><a href="#quotes">Quotes</a><a href="#contact">Contact</a></div>
+  <button class="theme" id="theme" aria-label="Switch light or dark theme">◐</button>
+</div></nav>
+<section class="wrap index-panel" aria-label="Portfolio index">
+  <div class="index-shell">
+    <div class="index-kicker">✦ portfolio index / 2026</div>
+    <h2 class="index-title">My Journey, at a Glance</h2>
+    <p class="index-sub">A little map of where I am, what I'm learning, and where I'm going.</p>
+
+    <div class="index-grid">
+      <a class="index-card" href="#top">
+        <span class="index-no">01</span><span class="index-icon">✧</span>
+        <span><strong>Hello, I'm Princy</strong><small>Start the journey</small></span>
+        <span class="index-arrow">→</span>
+      </a>
+      <a class="index-card" href="#about">
+        <span class="index-no">02</span><span class="index-icon">♡</span>
+        <span><strong>About Me</strong><small>Who I am & what inspires me</small></span>
+        <span class="index-arrow">→</span>
+      </a>
+      <a class="index-card" href="#journey">
+        <span class="index-no">03</span><span class="index-icon">🎓</span>
+        <span><strong>Academic Journey</strong><small>My college & learning path</small></span>
+        <span class="index-arrow">→</span>
+      </a>
+      <a class="index-card" href="#skills">
+        <span class="index-no">04</span><span class="index-icon">🐍</span>
+        <span><strong>Skills I'm Building</strong><small>Python • Problem Solving • Web</small></span>
+        <span class="index-arrow">→</span>
+      </a>
+      <a class="index-card" href="#goals">
+        <span class="index-no">05</span><span class="index-icon">🎯</span>
+        <span><strong>Career Goals</strong><small>Dreams → plans → achievements</small></span>
+        <span class="index-arrow">→</span>
+      </a>
+      <a class="index-card" href="#goals">
+        <span class="index-no">06</span><span class="index-icon">🚀</span>
+        <span><strong>My Vision</strong><small>Learn • Build • Grow</small></span>
+        <span class="index-arrow">→</span>
+      </a>
+      <a class="index-card" href="#quotes">
+        <span class="index-no">07</span><span class="index-icon">✨</span>
+        <span><strong>Words That Inspire Me</strong><small>Motivation & success quotes</small></span>
+        <span class="index-arrow">→</span>
+      </a>
+      <a class="index-card" href="#contact">
+        <span class="index-no">08</span><span class="index-icon">🌸</span>
+        <span><strong>Let's Connect</strong><small>Come along on my journey</small></span>
+        <span class="index-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="index-motto">“Still learning. Always growing.” 🚀</div>
+  </div>
+</section>
+
+
+<header class="wrap hero" id="top">
+  <h1>Hi, I'm <em>Princy.</em><br>I'm learning to build things that matter.</h1>
+  <p class="lead">First-year Computer Science student with big dreams, curious thoughts, and a constant desire to learn, explore, and create.</p>
+  <div class="term" aria-label="Python code that prints a greeting">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <pre id="code" aria-live="off"></pre>
+  </div>
+</header>
+
+<section id="about"><div class="wrap">
+  <h2>About me ✨</h2>
+  <div class="about">
+    <div>
+      <p>I'm Princy, a first-year B.E. Computer Science and Engineering student at SRM Valliammai Engineering College. I'm someone with big dreams, curious thoughts, and a constant desire to learn, explore, and create.</p>
+      <p>I chose CSE because I enjoy understanding how technology works, solving problems, and turning ideas into something useful. Right now, I'm building my foundation in programming, problem-solving, web development, and technology while discovering new areas of computer science.</p>
+      <p>This portfolio is a glimpse into my journey: the things I learn, the skills I develop, the projects I build, and the goals I'm working towards throughout my college years. 🚀</p>
+    </div>
+    <aside class="facts" id="journey">
+      <h3>🎓 Academic journey</h3>
+      <dl>
+        <dt>Degree</dt><dd>B.E. Computer Science &amp; Engineering</dd>
+        <dt>College</dt><dd>SRM Valliammai Engineering College</dd>
+        <dt>Current</dt><dd>1st Year, Semester 1</dd>
+        <dt>Batch</dt><dd>2026 – 2030</dd>
+      </dl>
+      <blockquote>“Dream big, learn fearlessly, and build something worth remembering.” ✨</blockquote>
+    </aside>
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <h2>Skills 💡</h2>
+  <div class="chips">
+    <span class="chip on">🐍 Python (learning)</span>
+    <span class="chip">Problem-solving</span>
+    <span class="chip">Web development basics</span>
+  </div>
+  <p class="note">Every expert was once a beginner. I'm adding something new every week.</p>
+</div></section>
+
+<section id="goals"><div class="wrap">
+  <h2>My career goals 🎯</h2>
+  <ul class="goals">
+    <li><div class="em">💻</div><div><b>Master programming</b><span>Build strong skills in Python, JavaScript, and other technologies.</span></div></li>
+    <li><div class="em">🧠</div><div><b>Strengthen problem-solving</b><span>Improve my DSA and logical-thinking skills.</span></div></li>
+    <li><div class="em">🛠️</div><div><b>Build real projects</b><span>Turn ideas into useful and creative applications.</span></div></li>
+    <li><div class="em">🌱</div><div><b>Gain experience</b><span>Participate in internships, hackathons, and technical events.</span></div></li>
+    <li><div class="em">🤝</div><div><b>Grow as a leader</b><span>Develop communication, teamwork, and leadership skills.</span></div></li>
+    <li><div class="em">🌍</div><div><b>Stay future-ready</b><span>Keep learning new technologies, especially AI and emerging fields.</span></div></li>
+    <li><div class="em">🎯</div><div><b>Build a successful career</b><span>Become a skilled software professional and create technology that makes an impact.</span></div></li>
+  </ul>
+  <p class="vision"><span>Learn with purpose.</span><span>Build with passion.</span><span>Grow beyond limits.</span></p>
+</div></section>
+
+<section class="quotes" id="quotes"><div class="wrap">
+  <div class="qbox" id="qbox" aria-live="polite">
+    <div class="qtext" id="qtext"></div>
+    <div class="qwho" id="qwho"></div>
+  </div>
+  <div class="qctl">
+    <button class="btn" id="prev" aria-label="Previous quote">←</button>
+    <div class="dots" id="dots"></div>
+    <button class="btn" id="next" aria-label="Next quote">→</button>
+  </div>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <h2>Let's connect 🌸</h2>
+  <p>I'm always happy to learn from others, share ideas, and grow together.</p>
+  <div class="card"><b>Princy</b><span>B.E. CSE · SRM Valliammai Engineering College</span></div>
+</div></section>
+
+<footer>Made with curiosity by Princy · 2026 – 2030 · Still learning, always growing 🚀</footer>
+
+<script>
+// Typing hero
+var lines=[
+ ['<span class="c"># my journey, in Python</span>'],
+ ['<span class="k">name</span> <span class="o">=</span> <span class="s">"Princy"</span>'],
+ ['<span class="k">goal</span> <span class="o">=</span> <span class="s">"Learn with purpose"</span>'],
+ ['<span class="k">while</span> learning:'],
+ ['    <span class="k">print</span>(<span class="s">"Grow beyond limits 🚀"</span>)']
+];
+var plain=lines.map(function(l){return l[0].replace(/<[^>]+>/g,'')});
+var el=document.getElementById('code');
+var reduce=window.matchMedia('(prefers-color-scheme: no-preference)') && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function render(n){ // n = number of plain chars shown, keep colored markup
+  var out='',left=n;
+  for(var i=0;i<lines.length;i++){
+    var html=lines[i][0],p=plain[i];
+    if(left>=p.length){out+=html+'\n';left-=p.length+1;if(left<0)left=0;continue;}
+    // partial line: walk markup
+    var shown=0,res='',tag=false,openTags=[];
+    for(var j=0;j<html.length&&shown<left;j++){
+      var ch=html[j];
+      if(ch==='<'){var e=html.indexOf('>',j);var t=html.slice(j,e+1);res+=t;
+        if(t.indexOf('</')===0)openTags.pop();else openTags.push(1);j=e;continue;}
+      res+=ch;shown++;
+    }
+    while(openTags.length){res+='</span>';openTags.pop();}
+    out+=res;left=-1;break;
+  }
+  el.innerHTML=out+'<span class="caret"></span>';
+}
+var total=plain.join('\n').length,pos=0;
+function type(){render(pos);if(pos<total){pos++;setTimeout(type,38);}}
+if(reduce){render(total)}else{type()}
+
+// Quotes
+var Q=[
+ ['Learn with purpose. Build with passion. Grow beyond limits.','Princy'],
+ ['Dream, dream, dream. Dreams transform into thoughts, and thoughts result in action.','Dr. A. P. J. Abdul Kalam'],
+ ['The only way to do great work is to love what you do.','Steve Jobs'],
+ ['Arise, awake, and stop not till the goal is reached.','Swami Vivekananda'],
+ ['Whether you think you can, or you think you can\'t, you\'re right.','Henry Ford'],
+ ['Everyone should learn to program a computer, because it teaches you how to think.','Steve Jobs'],
+ ['Dream big, learn fearlessly, and build something worth remembering.','Princy']
+];
+var qi=0,qb=document.getElementById('qbox'),qt=document.getElementById('qtext'),qw=document.getElementById('qwho'),dots=document.getElementById('dots'),timer;
+Q.forEach(function(){dots.appendChild(document.createElement('i'))});
+function show(i){
+  qb.classList.add('fade');
+  setTimeout(function(){
+    qi=(i+Q.length)%Q.length;
+    qt.textContent='“'+Q[qi][0]+'”';qw.textContent='— '+Q[qi][1];
+    Array.prototype.forEach.call(dots.children,function(d,k){d.className=k===qi?'on':''});
+    qb.classList.remove('fade');
+  },300);
+}
+function auto(){clearInterval(timer);timer=setInterval(function(){show(qi+1)},7000)}
+document.getElementById('next').onclick=function(){show(qi+1);auto()};
+document.getElementById('prev').onclick=function(){show(qi-1);auto()};
+qt.textContent='“'+Q[0][0]+'”';qw.textContent='— '+Q[0][1];dots.children[0].className='on';auto();
+
+// Theme toggle
+document.getElementById('theme').onclick=function(){
+  var r=document.documentElement,cur=r.getAttribute('data-theme');
+  var dark=cur?cur==='dark':!window.matchMedia('(prefers-color-scheme: light)').matches;
+  r.setAttribute('data-theme',dark?'light':'dark');
+};
+</script>
+</body>
+</html>
